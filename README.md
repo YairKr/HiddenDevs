@@ -6,6 +6,7 @@ Application
 
 --Main module script give you the corrcet module based on device 
 -- Client / server 
+```
 local RunService = game:GetService("RunService")
 
 local VFXHandler = nil	
@@ -26,8 +27,10 @@ end
 
 
 return VFXHandler
+```
 ----------------------------------------------------------------
 --ServerSide just to run the commands its insdie the module 
+```
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 
@@ -47,8 +50,10 @@ function ServerEffectrsHandler.RunOnly(Player : Player,EffectName : string,Argum
 end
 
 return ServerEffectrsHandler
+```
 ---------------------------------------------------------------
 --CLient side 
+```
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 
@@ -116,10 +121,10 @@ end
 Packets.EffectsHandler.OnClientEvent:Connect(ClientEffectsHandler.Run)
 
 return ClientEffectsHandler
-
+```
 -------------------------------------------------------------------------------------------------------
 --Example of effects really simple just simple movements 
-
+```
 local Debris = game:GetService("Debris")
 local RunService = game:GetService("RunService")
 
@@ -221,15 +226,20 @@ function Movements.FallingDragon(Arguments)
 end
 
 return Movements
+```
+
 
 ---------------------------------------------------------------------------------------------
+
+This thing shows a diffrent approch to scripting than showed above
+
 --Bonus to show i know how to handle abstract things instead of practical only 
 -- i tried to recreate deepwoken effecthander (Stun , ragdoll etc...)
 --stay with me its a bit complicated to explain  lol
 
 
 -- lets start with the server side module
-
+```
 local Http = game:GetService("HttpService")
 
 local EffectReplicator = {}
@@ -402,10 +412,10 @@ end
 
 return EffectReplicator
 
-
+```
 ------------------------------------------------------------------------
 -- now server script 
-
+```
 local function PlayerAdded(Player)
 
 	PlayersData[Player] = DataStore:CreateShell(Player,{Player.UserId})
@@ -437,10 +447,10 @@ local function PlayerAdded(Player)
 
 	Player:SetAttribute("NotSpawned",true)
 end
-
+```
 -------------------------------------------------------------------
 --Create replicator 
-
+```
 function shared.CreateReplicator(LivingObject)
 	local IsPlayer = Players:GetPlayerFromCharacter(LivingObject)
 
@@ -492,10 +502,11 @@ end
 function shared.GetReplicator(LivingObject)
 	return PlayerEffects[LivingObject] and PlayerEffects[LivingObject].Replicator
 end
+```
 ---------------------------------------------------------------------------------------
 -- client main module
 --basiclly a recreation of the server just to fit the client
-
+```
 local Http = game:GetService("HttpService")
 
 local EffectReplicator = {
@@ -761,12 +772,14 @@ end)
 
 
 return EffectReplicator
-
+```
 
 -----------------------------------------------------------------------------------------
 --i will create a very simple way to implment them with a local script 
 -- the beauty of this way of handling stun is its almost exploiter prof i mean how can an exploiter know if you are attacking if he cant see your client
 -- its one of its many bonuses but just food for thought
+
+```
 
 local GetDescendants = game.GetDescendants
 local IsA = game.IsA
@@ -942,6 +955,6 @@ game:service("RunService").RenderStepped:connect(function(Beat)
 		warn(Eror)
 	end
 end)
-
+```
 --------------------------------------------------
 -- a way to exploit is to remove / disable the script but its easy practice to just make anti cheat that checks it and its a good way to get rid of hackers lowkey
